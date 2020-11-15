@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Поиск авиабилетов</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="/style/normalize.css">
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__content container"></div>
+
+        </header>
+        <main class="page">
+            <div class="page__container container">
+                <!-- Боковой фильтр -->
+                <aside class="page__aside">
+                    <form class="page__menu menu-page">
+                        <div class="menu-page__sort">
+                            <div class="menu-page__sort">
+                                <h3 class="menu-title">Сортировать</h3>
+                                <input type="radio" name="priceSort" id="scending" value="scending" checked
+                                    data-sort="minprice">
+                                <label for="scending">По возрастанию</label><br>
+                                <input type="radio" name="priceSort" id="descending" value="descending"
+                                    data-sort="maxprice">
+                                <label for="descending">По убыванию</label><br>
+                                <input type="radio" name="priceSort" id="descending" value="onway" data-sort="duration">
+                                <label for="descending">По времени в пути</label><br>
+                            </div>
+
+
+                            <div class="menu-page__filter">
+                                <h3 class="menu-title">Фильтровать</h3>
+                                <input type="checkbox" name="transferFilter" id="withoutTransfers"
+                                    value="withoutTransfers" data-sort="onesegment">
+                                <label for="withoutTransfers">Без пересадок</label><br>
+                                <input type="checkbox" name="transferFilter" id="oneTransfers" value="oneTransfers"
+                                    data-sort="twosegment">
+                                <label for="oneTransfers">Одна пересадка</label>
+
+                            </div>
+
+                            <div class="menu-page__price">
+                                <h3 class="menu-title">Цена</h3>
+                                <p>От<input type="text" name="" id="" value="0" data-sort="mincost"></p>
+                                <p>До<input type="text" name="" id="" value="100000" data-sort="maxcost"></p>
+                            </div>
+
+                            <div class="menu-page__airlines">
+                                <h3 class="menu-title">Авиакомпании</h3>
+                            </div>
+                        </div>
+                    </form>
+                </aside>
+                <!-- Список рейсов -->
+                <div class="wrapper" data-list-mount>
+                    <div class="page__content _container ">
+                        <!-- render -->
+                        <template data-flight-row>
+                            <div class="page__content _container ">
+                                <div class="page-content__title">
+                                    <div class="title-content">
+                                        <div class="title-logo" data-carrier="uid">%carrierUid%</div>
+                                        <div class="title-price__content">
+                                            <div class="total-price rub title-color" data-price="total">%totalPrice%
+                                            </div>
+                                            <div class="description-price title-color">Стоимость для одного взрослого
+                                                пассажира
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-content__body body-content">
+                                    <div class="body-content__flight">
+                                        <div class="flight-date__content">
+                                            <div class="date-content flight-oneway">
+                                                <div class="date-content__flight flight-content">
+                                                    <div class="flight-content__container">
+                                                        <span class="city-name airoport-title"
+                                                            data-departureCity="caption">%departureCity%</span>,
+                                                        <span class="airport-name airoport-title"
+                                                            data-departureAirport="caption">%departureAirport%</span>
+                                                        <span class="airport-uid"
+                                                            data-departureAirport="uid">(%departureAirportUid%)</span>
+                                                        <div class="arrow"></div>
+                                                        <span class="city-name airoport-title"
+                                                            data-arrivalCity="caption">%arrivalCity%</span>,
+                                                        <span class="airport-name airoport-title"
+                                                            data-arrivalAirport="caption">%arrivalAirport% </span>
+                                                        <span class="airport-uid"
+                                                            data-arrivalAirport="uid">(%arrivalAirportUid%)</span>
+                                                    </div>
+                                                </div>
+                                                <div class="flight-content__date date-container">
+                                                    <div class="date-content__departure-date date-content__date">
+                                                        <span class="departure-time flight-time airoport-title"
+                                                            data-departureDate="time">%departureDateTime%</span>
+                                                        <span class="departure-date flight-date"
+                                                            data-departureDate="day">%departureDateNum%
+                                                            %departureDateMonth%.
+                                                            %departureDateDay%</span>
+                                                    </div>
+                                                    <div class="date-content__transfer" data-duration>
+                                                        %departureDurationHour% ч %departureDurationMinutes% мин</div>
+                                                    <div class="date-content__arrival-date date-content__date">
+                                                        <span class="arrival-time flight-time airoport-title"
+                                                            data-arrivalDate="time">%arrivalDateTime%</span>
+                                                        <span class="arrival-date flight-date"
+                                                            data-arrivalDate="day">%arrivalDateNum% %arrivalDateMonth%.
+                                                            %arrivalDateDay%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="date-content__border">
+                                                    <div class="duration-title %durationClassList%">1 пересадка</div>
+                                                </div>
+                                                <div class="date-content__airlines" data-airlines="caption">Рейс
+                                                    выполняет:
+                                                    %departureCarrierThere%</div>
+                                            </div>
+                                        </div>
+                                        <div class="flight-content__border">
+                                        </div>
+                                        <div class="flight-date__content">
+                                            <div class="date-content flight-oneway">
+                                                <div class="date-content__flight flight-content">
+                                                    <div class="flight-content__container">
+                                                        <span class="city-name airoport-title"
+                                                            data-departureCity="caption">%departureBackCity%</span>,
+                                                        <span class="airport-name airoport-title"
+                                                            data-departureAirport="caption">%departureBackAirport%
+                                                        </span>
+                                                        <span class="airport-uid"
+                                                            data-departureAirport="uid">(%departureBackAirportUid%)</span>
+                                                        <div class="arrow"></div>
+                                                        <span class="city-name airoport-title"
+                                                            data-arrivalCity="caption">%arrivalBackCity%</span>,
+                                                        <span class="airport-name airoport-title"
+                                                            data-arrivalAirport="caption">%arrivalBackAirport%</span>
+                                                        <span class="airport-uid"
+                                                            data-arrivalAirport="caption">(%arrivalBackAirportUid%)</span>
+                                                    </div>
+                                                </div>
+                                                <div class="flight-content__date date-container">
+                                                    <div class="date-content__departure-date date-content__date">
+                                                        <span class="departure-time flight-time airoport-title"
+                                                            data-departureDate="time">%departureBackDateTime%</span>
+                                                        <span class="departure-date flight-date"
+                                                            data-departureDate="day">%departureBackDateNum%
+                                                            %departureBackDateMonth%.
+                                                            %departureBackDateDay%</span>
+                                                    </div>
+                                                    <div class="date-content__transfer" data-duration>
+                                                        %departureBackDurationHour% ч %departureBackDurationMinutes% мин
+                                                    </div>
+                                                    <div class="date-content__arrival-date date-content__date">
+                                                        <span class="arrival-time flight-time airoport-title"
+                                                            data-arrivalDate="time">%arrivalBackDateTime%</span>
+                                                        <span class="arrival-date flight-date"
+                                                            data-arrivalDate="day">%arrivalBackDateNum%
+                                                            %arrivalBackDateMonth%.
+                                                            %arrivalBackDateDay%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="date-content__border">
+                                                    <div class="duration-title %durationClassListBack%">1 пересадка
+                                                    </div>
+                                                </div>
+                                                <div class="date-content__airlines" data-airlines="caption">Рейс
+                                                    выполняет:
+                                                    %departureBackCarrierThere%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-content__footer footer-content">
+                                    <button class="flight-selection button" (click)="counter">Выбрать</button>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="flight__counter-button">
+                        <button class="count-flight">Показать ещё</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <!-- <footer class="footer">
+      <div class="footer__container container">footer </div>
+  
+    </footer> -->
+    </div>
+    <script type="module" src="/scripts/Observer.mjs"></script>
+    <script src="/scripts/EventEmitter.js"></script>
+    <script src="/scripts/Database.js"></script>
+    <script src="/scripts/flights.js"></script>
+    <script src="/scripts/main.js"></script>
+</body>
+
+</html>

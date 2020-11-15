@@ -1,0 +1,270 @@
+:root {
+    --top-card-color: #0087c9;
+    --bottom-card-color: #ffaf67;
+}
+
+
+* {
+    font-family: Roboto, sans-serif;
+}
+
+body {
+    min-height: 100%;
+}
+
+.wrapper {
+    max-width: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1140px;
+}
+
+.page__container {
+    display: flex;
+}
+
+.page__aside {
+    display: flex;
+    flex-direction: column;
+    max-width: 260px;
+}
+
+.page__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+._container {
+    padding: 0 15px;
+}
+
+.title-content {
+    height: 45px;
+    background-color: var(--top-card-color);
+}
+
+.body-content {
+    height: 300px;
+}
+
+.footer-content {
+    height: 45px;
+    margin-bottom: 25px;
+}
+
+.title-content {
+    display: flex;
+    max-width: 100%;
+    padding: 5px 15px;
+}
+
+.title-logo {
+    flex: 0 1 20%;
+    color: #ffffff;
+}
+
+.title-price__content {
+    flex: 0 1 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.total-price {
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.description-price {
+    font-weight: 300;
+    font-size: 10px;
+}
+
+.date-content {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-content__flight {
+    height: 43px;
+    min-width: 100%;
+}
+
+.flight-content__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    border-bottom: 1px solid #adadad75;
+
+}
+
+.title-color {
+    color: #ffffff;
+
+}
+
+.airoport-title {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.airport-uid {
+    font-weight: 400;
+    font-size: 20px;
+    padding-left: 3px;
+    color: var(--top-card-color);
+}
+
+.date-container {
+    position: relative;
+    display: flex;
+    height: 53px;
+    min-width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-content__date {
+    padding: 0 20px;
+}
+
+.flight-date {
+    color: var(--top-card-color);
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.date-content__transfer {
+    display: block;
+    position: relative;
+}
+
+.date-content__transfer::before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: -23px;
+    background: url('/assets/clock.svg');
+}
+
+.date-content__border {
+    position: relative;
+    height: 1px;
+    width: 690px;
+    max-width: 690px;
+    border-bottom: 1px solid rgba(88, 88, 88, 0.822);
+}
+
+.duration-title {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 40%;
+    top: -10px;
+    width: 120px;
+    height: 20px;
+    color: var(--bottom-card-color);
+    background-color: #ffffff;
+}
+
+.date-content__airlines {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    min-width: 100%;
+    height: 40px;
+}
+
+.flight-content__border {
+    max-height: 2px;
+    border-bottom: 2px solid var(--top-card-color);
+}
+
+button {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bottom-card-color);
+    color: #ffffff;
+    text-transform: uppercase;
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -ms-transition: .4s;
+    -o-transition: .4s;
+}
+
+button:hover {
+    background-color: #fdbf87;
+
+}
+
+.flight__counter-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+button.count-flight {
+    width: 255px;
+    height: 30px;
+    background: rgb(209, 209, 209);
+    color: #000;
+    text-transform: none;
+}
+
+button.count-flight:hover {
+    background: rgba(209, 209, 209, 0.589);
+
+}
+
+.arrow {
+    position: relative;
+    margin: auto;
+    background-color: crimson;
+    width: 20px;
+    height: 2px;
+    background: var(--top-card-color);
+}
+
+.arrow:before,
+.arrow:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-right: 0;
+    top: -2px;
+    right: -7px;
+    border-left-color: var(--top-card-color);
+    border-width: 3px 11px 3px 8px;
+}
+
+.rub::after {
+    content: "₽";
+}
+
+.show {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
