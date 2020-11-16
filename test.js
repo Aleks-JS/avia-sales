@@ -54,3 +54,13 @@ let result = array.filter((i) =>
 );
 
 console.log(result);
+
+document.querySelectorAll('.menu-page__price input').forEach((e) => {
+  e.addEventListener('focus', (e) => {
+    parseInt(e.target.value) === 0 && (e.target.value = '');
+  });
+
+  e.addEventListener('blur', (e) => {
+    !e.target.value && (e.target.value = 0);
+  });
+});

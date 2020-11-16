@@ -76,7 +76,6 @@
 
     // фильтр макс стоимости
     if (state.maxcost) {
-      console.log('maxcost');
       state.flights = state.flights.filter(
         (e) => parseInt(e.price.total.amount) < state.maxcost
       );
@@ -114,7 +113,6 @@
     //фильтр по перевозчикам
     if (state.carrier.length > 0) {
       let keysSelectedFilter = state.carrier.map((i) => i);
-      console.log(keysSelectedFilter);
 
       state.flights = state.flights.filter((i) => {
         return (

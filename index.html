@@ -1,21 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Поиск авиабилетов</title>
-    <base href="/">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="/style/normalize.css">
-    <link rel="stylesheet" href="/style/style.css">
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="/style/normalize.css" />
+    <link rel="stylesheet" href="/style/style.css" />
 </head>
 
 <body>
     <div class="wrapper">
         <header class="header">
             <div class="header__content container"></div>
-
         </header>
         <main class="page">
             <div class="page__container container">
@@ -26,33 +25,34 @@
                             <div class="menu-page__sort">
                                 <h3 class="menu-title">Сортировать</h3>
                                 <input type="radio" name="priceSort" id="scending" value="scending" checked
-                                    data-sort="minprice">
-                                <label for="scending">По возрастанию</label><br>
+                                    data-sort="minprice" />
+                                <label for="scending">По возрастанию</label><br />
                                 <input type="radio" name="priceSort" id="descending" value="descending"
-                                    data-sort="maxprice">
-                                <label for="descending">По убыванию</label><br>
-                                <input type="radio" name="priceSort" id="descending" value="onway" data-sort="duration">
-                                <label for="descending">По времени в пути</label><br>
+                                    data-sort="maxprice" />
+                                <label for="descending">По убыванию</label><br />
+                                <input type="radio" name="priceSort" id="duration" value="onway" data-sort="duration" />
+                                <label for="duration">По времени в пути</label><br />
                             </div>
-
 
                             <div class="menu-page__filter">
                                 <h3 class="menu-title">Фильтровать</h3>
                                 <input type="checkbox" name="transferFilter" id="withoutTransfers"
-                                    value="withoutTransfers" data-sort="onesegment">
-                                <label for="withoutTransfers">Без пересадок</label><br>
+                                    value="withoutTransfers" data-sort="onesegment" />
+                                <label for="withoutTransfers">Без пересадок</label><br />
                                 <input type="checkbox" name="transferFilter" id="oneTransfers" value="oneTransfers"
-                                    data-sort="twosegment">
+                                    data-sort="twosegment" />
                                 <label for="oneTransfers">Одна пересадка</label>
-
                             </div>
 
                             <div class="menu-page__price">
                                 <h3 class="menu-title">Цена</h3>
-                                <p>От<input type="text" name="min" value="0" pattern="^[ 0-9]+$" data-sort="mincost">
+                                <p>
+                                    От<input type="text" name="min" value="0" pattern="^[ 0-9]+$" data-sort="mincost" />
                                 </p>
-                                <p>До<input type="text" name="max" value="100000" pattern="^[ 0-9]+$"
-                                        data-sort="maxcost"></p>
+                                <p>
+                                    До<input type="text" name="max" value="100000" pattern="^[ 0-9]+$"
+                                        data-sort="maxcost" />
+                                </p>
                             </div>
 
                             <div class="menu-page__airlines">
@@ -63,18 +63,21 @@
                 </aside>
                 <!-- Список рейсов -->
                 <div class="wrapper" data-list-mount>
-                    <div class="page__content _container ">
+                    <div class="page__content _container">
                         <!-- render -->
                         <template data-flight-row>
-                            <div class="page__content _container ">
+                            <div class="page__content _container">
                                 <div class="page-content__title">
                                     <div class="title-content">
-                                        <div class="title-logo" data-carrier="uid">%carrierUid%</div>
+                                        <div class="title-logo" data-carrier="uid">
+                                            %carrierUid%
+                                        </div>
                                         <div class="title-price__content">
-                                            <div class="total-price rub title-color" data-price="total">%totalPrice%
+                                            <div class="total-price rub title-color" data-price="total">
+                                                %totalPrice%
                                             </div>
-                                            <div class="description-price title-color">Стоимость для одного взрослого
-                                                пассажира
+                                            <div class="description-price title-color">
+                                                Стоимость для одного взрослого пассажира
                                             </div>
                                         </div>
                                     </div>
@@ -95,7 +98,8 @@
                                                         <span class="city-name airoport-title"
                                                             data-arrivalCity="caption">%arrivalCity%</span>,
                                                         <span class="airport-name airoport-title"
-                                                            data-arrivalAirport="caption">%arrivalAirport% </span>
+                                                            data-arrivalAirport="caption">%arrivalAirport%
+                                                        </span>
                                                         <span class="airport-uid"
                                                             data-arrivalAirport="uid">(%arrivalAirportUid%)</span>
                                                     </div>
@@ -110,7 +114,9 @@
                                                             %departureDateDay%</span>
                                                     </div>
                                                     <div class="date-content__transfer" data-duration>
-                                                        %departureDurationHour% ч %departureDurationMinutes% мин</div>
+                                                        %departureDurationHour% ч
+                                                        %departureDurationMinutes% мин
+                                                    </div>
                                                     <div class="date-content__arrival-date date-content__date">
                                                         <span class="arrival-time flight-time airoport-title"
                                                             data-arrivalDate="time">%arrivalDateTime%</span>
@@ -120,15 +126,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="date-content__border">
-                                                    <div class="duration-title %durationClassList%">1 пересадка</div>
+                                                    <div class="duration-title %durationClassList%">
+                                                        1 пересадка
+                                                    </div>
                                                 </div>
-                                                <div class="date-content__airlines" data-airlines="caption">Рейс
-                                                    выполняет:
-                                                    %departureCarrierThere%</div>
+                                                <div class="date-content__airlines" data-airlines="caption">
+                                                    Рейс выполняет: %departureCarrierThere%
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="flight-content__border">
-                                        </div>
+                                        <div class="flight-content__border"></div>
                                         <div class="flight-date__content">
                                             <div class="date-content flight-oneway">
                                                 <div class="date-content__flight flight-content">
@@ -159,7 +166,8 @@
                                                             %departureBackDateDay%</span>
                                                     </div>
                                                     <div class="date-content__transfer" data-duration>
-                                                        %departureBackDurationHour% ч %departureBackDurationMinutes% мин
+                                                        %departureBackDurationHour% ч
+                                                        %departureBackDurationMinutes% мин
                                                     </div>
                                                     <div class="date-content__arrival-date date-content__date">
                                                         <span class="arrival-time flight-time airoport-title"
@@ -171,18 +179,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="date-content__border">
-                                                    <div class="duration-title %durationClassListBack%">1 пересадка
+                                                    <div class="duration-title %durationClassListBack%">
+                                                        1 пересадка
                                                     </div>
                                                 </div>
-                                                <div class="date-content__airlines" data-airlines="caption">Рейс
-                                                    выполняет:
-                                                    %departureBackCarrierThere%</div>
+                                                <div class="date-content__airlines" data-airlines="caption">
+                                                    Рейс выполняет: %departureBackCarrierThere%
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="page-content__footer footer-content">
-                                    <button class="flight-selection button" (click)="counter">Выбрать</button>
+                                    <button class="flight-selection button" (click)="counter">
+                                        Выбрать
+                                    </button>
                                 </div>
                             </div>
                         </template>
@@ -192,12 +203,7 @@
                     </div>
                 </div>
             </div>
-
         </main>
-        <!-- <footer class="footer">
-      <div class="footer__container container">footer </div>
-  
-    </footer> -->
     </div>
     <script src="/scripts/EventEmitter.js"></script>
     <script src="/scripts/Database.js"></script>

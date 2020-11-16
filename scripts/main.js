@@ -48,6 +48,16 @@ function init() {
     });
   });
 
+  document.querySelectorAll('.menu-page__price input').forEach((e) => {
+    e.addEventListener('focus', (e) => {
+      parseInt(e.target.value) === 0 && (e.target.value = '');
+    });
+
+    e.addEventListener('blur', (e) => {
+      !e.target.value && (e.target.value = 0);
+    });
+  });
+
   btn.addEventListener('click', clickHandler);
 
   // Фильтр пересадок
