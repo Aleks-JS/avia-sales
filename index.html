@@ -49,8 +49,10 @@
 
                             <div class="menu-page__price">
                                 <h3 class="menu-title">Цена</h3>
-                                <p>От<input type="text" name="" id="" value="0" data-sort="mincost"></p>
-                                <p>До<input type="text" name="" id="" value="100000" data-sort="maxcost"></p>
+                                <p>От<input type="text" name="min" value="0" pattern="^[ 0-9]+$" data-sort="mincost">
+                                </p>
+                                <p>До<input type="text" name="max" value="100000" pattern="^[ 0-9]+$"
+                                        data-sort="maxcost"></p>
                             </div>
 
                             <div class="menu-page__airlines">

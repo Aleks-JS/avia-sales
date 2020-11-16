@@ -1,9 +1,23 @@
-const db = Database.getFlights();
+const state = {
+  minprice: true,
+  maxprice: null,
+  duration: null,
+  onesegment: null,
+  twosegment: null,
+  mincost: null,
+  maxcost: null,
+  carrier: [],
+  flights: [],
+  count: 2,
+};
+state.flights = Database.initGetDb();
+
 const airLineCheckBoxParent = document.querySelector('.menu-page__airlines');
 const flightList = document.querySelector('.page__content');
-console.log(db);
+const btn = document.querySelector('.count-flight');
 
 function init() {
+  // Сортировка
   document.querySelectorAll('.menu-page__sort').forEach((e) => {
     e.addEventListener('change', (e) => {
       switch (e.target.dataset.sort) {
@@ -33,31 +47,73 @@ function init() {
       }
     });
   });
+
+  btn.addEventListener('click', clickHandler);
+
+  // Фильтр пересадок
+  document.querySelectorAll('[name="transferFilter"]').forEach((e, i) => {
+    e.addEventListener('change', (input) => {
+      input.target.checked
+        ? setState({ [input.target.dataset.sort]: true })
+        : setState({ [input.target.dataset.sort]: null });
+    });
+  });
+
+  // Фильтр минимальной стоимости
+  document
+    .querySelector('[data-sort="mincost"]')
+    .addEventListener('input', (e) => {
+      parseInt(e.target.value) > 0
+        ? setState({ [e.target.dataset.sort]: parseInt(e.target.value) })
+        : setState({ [e.target.dataset.sort]: null && (e.target.value = 0) });
+    });
+
+  // Фильтр максимальной стоимости
+  document
+    .querySelector('[data-sort="maxcost"]')
+    .addEventListener('input', (e) => {
+      parseInt(e.target.value) > 0
+        ? setState({ [e.target.dataset.sort]: parseInt(e.target.value) })
+        : setState({ [e.target.dataset.sort]: null });
+    });
+
+  // Фильтр по перевозчику
+  document
+    .querySelector('.menu-page__airlines')
+    .addEventListener('change', (e) => {
+      if (e.target.dataset.sort) {
+        if (!state[e.target.dataset.sort].includes(e.target.name)) {
+          state[e.target.dataset.sort].push(e.target.name);
+          setState({
+            [e.target.dataset.sort]: state[e.target.dataset.sort],
+          });
+        } else if (state[e.target.dataset.sort].includes(e.target.name)) {
+          state[e.target.dataset.sort].splice(
+            state[e.target.dataset.sort].indexOf(e.target.name),
+            1
+          );
+          e.target.checked = false;
+          setState({
+            [e.target.dataset.sort]: state[e.target.dataset.sort],
+          });
+        }
+      }
+    });
+
+  // Сброс кнопок
+  document
+    .querySelectorAll('input')
+    .forEach((e, i) => (i != 0 ? (e.checked = false) : (e.checked = true)));
 }
 
 function update() {
-  getFlightsListRange(flightList, db, 3);
-
-  state.flights = Database.getFlights(state);
-  // updateTemplate();
+  Database.getFlights(state);
+  getFlightsListRange(flightList, state.flights, state.count);
 }
-
-const state = {
-  minprice: null,
-  maxprice: null,
-  duration: null,
-  onesegment: null,
-  twosegment: null,
-  mincost: null,
-  maxcost: null,
-  carrier: null,
-  flights: [],
-};
 
 function setState(obj) {
   Object.assign(state, obj);
   update();
-  console.log(state);
 }
 
 (function () {
@@ -67,7 +123,9 @@ function setState(obj) {
   });
   for (let i in airlines) {
     airLineCheckBoxParent.innerHTML += `
-    <input type="checkbox" name="airlines" value="${i}" id="${i}" data-sort="choicecarrier">
+    <input type="checkbox" name="${
+      airlines[i]
+    }" value="${i}" id="${i}" data-sort="carrier">
                                                   <label for="${i}">${
       airlines[i].length > 20 ? airlines[i].slice(0, 17) + '...' : airlines[i]
     }</label><br>
@@ -78,32 +136,19 @@ function setState(obj) {
   update();
 })();
 
-function sortUpDb(field) {
-  return (a, b) => {
-    a.field > b.field ? 1 : -1;
-  };
+function counter(count) {
+  return count + 2;
 }
 
-function updateDatabase(state) {
-  const totalPrice = ['price'].total;
-  return db.sort(sortUpDb([totalPrice].amount));
-  // db.forEach((elem) => console.log(elem.price.total.amount));
+function clickHandler() {
+  setState({ count: counter(state.count) });
 }
-
-// function updateTemplate() {
-//   const template = document
-//     .querySelector('[data-flight-row]')
-//     .content.querySelector('div');
-//   const parent = document.querySelector('[data-list-mount]');
-//   for (const flight of db) {
-//     console.log(123);
-//     const card = template.cloneNode(true);
-//     parent.append(card);
-//   }
-// }
 
 function getFlightsListRange(parent, dataBase, count = 2) {
+  parent.innerHTML = '';
+
   for (let i = 0; i < count; i++) {
+    if (!dataBase[i]) return;
     const firstSegmentThere = dataBase[i].legs[0].segments[0];
 
     const lastSegmentThere =
@@ -217,8 +262,6 @@ function getFlightsListRange(parent, dataBase, count = 2) {
 
     const durationClassListBack =
       dataBase[i].legs[1].segments.length - 1 < 1 ? 'hide' : 'show';
-
-    console.log(dataBase[i].legs[1].segments.length - 1);
 
     parent.innerHTML += `
       <div class="page-content__title">

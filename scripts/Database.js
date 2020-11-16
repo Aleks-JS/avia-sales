@@ -52,10 +52,69 @@
     return database.flights.map((el) => el.carrier);
   };
 
-  // Получаем массив всех рейсов
+  api.initGetDb = function () {
+    return getCopy(database.flights);
+  };
+
+  // Получаем и обрабатываем массив всех рейсов
   api.getFlights = function (state) {
-    const db = getCopy(database.flights);
-    return db;
+    // фильтр по пересадкам
+    if (
+      (state.onesegment && state.twosegment) ||
+      (!state.onesegment && !state.twosegment)
+    ) {
+      state.flights = database.flights;
+    } else if (state.twosegment) {
+      state.flights = state.flights.filter(
+        (el) => el.legs[0].segments.length > 1
+      );
+    } else if (state.onesegment) {
+      state.flights = state.flights.filter(
+        (el) => el.legs[0].segments.length < 2 && el.legs[1].segments.length < 2
+      );
+    }
+    //фильтр по перевозчикам
+    state.flights.filter((f) => {
+      return f.carrier.caption == state.carrier.map((e) => e);
+    });
+
+    // фильтр макс стоимости
+    if (state.maxcost) {
+      console.log('maxcost');
+      state.flights = state.flights.filter(
+        (e) => parseInt(e.price.total.amount) < state.maxcost
+      );
+    }
+
+    // сортировка по возрастанию
+    if (state.minprice) {
+      state.flights.sort(
+        (a, b) =>
+          parseInt(a['price'].total.amount) - parseInt(b['price'].total.amount)
+      );
+    }
+
+    // сортировка по убыванию
+    if (state.maxprice) {
+      state.flights.sort(
+        (a, b) =>
+          parseInt(b['price'].total.amount) - parseInt(a['price'].total.amount)
+      );
+    }
+
+    // сортировка по времени
+    if (state.duration) {
+      state.flights.sort(
+        (a, b) =>
+          parseInt(a['legs'][0].duration) - parseInt(b['legs'][0].duration)
+      );
+    }
+
+    // фильтр мин стоимости
+    state.flights = state.flights.filter(
+      (e) => parseInt(e.price.total.amount) > state.mincost
+    );
+    return state.flights;
   };
 
   // Получаем массив дней
