@@ -112,18 +112,16 @@
     );
 
     //фильтр по перевозчикам
-    if (state.carrier.length > 0)
-      state.flights = state.flights.filter((f) => {
-        console.log(state);
-        console.log(state.carrier);
+    if (state.carrier.length > 0) {
+      let keysSelectedFilter = state.carrier.map((i) => i);
+      console.log(keysSelectedFilter);
+
+      state.flights = state.flights.filter((i) => {
         return (
-          f.carrier.caption ==
-          state.carrier.map((e) => {
-            console.log(e);
-            return e;
-          })
+          keysSelectedFilter.includes(i.carrier.caption) && i.carrier.caption
         );
       });
+    }
 
     return state.flights;
   };
