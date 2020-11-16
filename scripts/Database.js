@@ -73,10 +73,6 @@
         (el) => el.legs[0].segments.length < 2 && el.legs[1].segments.length < 2
       );
     }
-    //фильтр по перевозчикам
-    state.flights.filter((f) => {
-      return f.carrier.caption == state.carrier.map((e) => e);
-    });
 
     // фильтр макс стоимости
     if (state.maxcost) {
@@ -114,6 +110,21 @@
     state.flights = state.flights.filter(
       (e) => parseInt(e.price.total.amount) > state.mincost
     );
+
+    //фильтр по перевозчикам
+    if (state.carrier.length > 0)
+      state.flights = state.flights.filter((f) => {
+        console.log(state);
+        console.log(state.carrier);
+        return (
+          f.carrier.caption ==
+          state.carrier.map((e) => {
+            console.log(e);
+            return e;
+          })
+        );
+      });
+
     return state.flights;
   };
 
