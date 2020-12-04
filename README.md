@@ -1,0 +1,9 @@
+# Тестовое приложение подбора авиабилетов по параметрам
+### Задание было получено при отклике на вакансию Frontend developer (junior)
+- в виде макета выступало изображение в формате *png
+- в виде данных предоставлен файл json
+- вёрстка должна соответствовать по расположению элементов на странице
+- условий по адаптивности нет
+- должны быть реализованы фильтры, изменения на странице должны происходить без перезагрузки
+- реализация приложения возможна как на ванильном JS, так и с использованием любой библиотеки/фреймворка
+![layout](https://lh3.googleusercontent.com/3jroanb4_RRoeZoH1Iz4O5eDGi0xWqvlFroWbhHM3hzK1QPeEZS3JPLlxc_JcviG3N1R6vY7gmkFjfcrOz8gyJKAT_dvNEhPW5vGmVAMgezzeUdzz7Grv29Ghtq5yz3Q45tCOL5GbEfrXgbmaO2a78r3LCRQUOXENLnG9359Lwm4LjJYNsinyN88kinc4j5e0dXZEGPNvFSltSmYRWY8wMskgX5pAqC8D-WQBZh4f4VXr7Qjphobi6WEke4TbslP4J-pkHFoNT_N0WrgV0cseMSmKIZNoEuj87o_wBuFYZukcvTuO5eDPiYhlEvZkgk_9hOE4B8qx9iDyH9LVttvZQYWgT2XrQRLAI_XZ5qkwupRRyYWIAaC3RMvL0CbsUgOq6GF3Jt23ddrLD2xBgJ4sHNgmGdCZzzxyuo4nRMJfHacSqjnJ6_iKdCC6pv7SnzDDbhsdAcdfJtZpVFXcZcpUmyDrsSc5XKSxnGMUQsrIaYeORdaCEWNO6HZdddfCXohGas5Vtli1mF_7CrCNIhMdnjLmhnA-XACSzB4PmY5jwavwhzdJsXehB-FMWHhrUI-rs2rj0AYbiedylP3zWSve0ub5p1C6_Jd-8tNXHPIoGQf4A03vTIbSDuWPiDc-hw-PFcpomIn80sEsr1EBqQZLUup7FlereQ9cO-5iaj-550IaqlCE6F4rKX3uNDUcfY=w652-h880-no?authuser=0)
